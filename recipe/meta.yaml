@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
-  sha256: 9ce6e41c35c1c18b8a5f83b27877101802c2b466b85cadfde7d8a00323c5ccd6
+  sha256: 4b8479e7d5963508b29e8df98a4a0ed2c08ab8d9501f03eeed6ba5f13c097940
 
 build:
   noarch: python
