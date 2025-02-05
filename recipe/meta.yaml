@@ -1,13 +1,13 @@
 {% set name = "ktch" %}
-{% set version = "0.4.2" %}
+{% set version = "0.4.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
-  sha256: 4b8479e7d5963508b29e8df98a4a0ed2c08ab8d9501f03eeed6ba5f13c097940
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
+  sha256: d60b7d7118f670d4957e2f6bacf5f73792f95853e788c3397d87ad1cf8ae4fa5
 
 build:
   noarch: python
