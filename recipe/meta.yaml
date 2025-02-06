@@ -37,9 +37,12 @@ test:
     - pip
 
 about:
+  home: https://doc.ktch.dev/
   summary: ktch is a python package for model-based morphometrics.
   license: Apache-2.0
   license_file: LICENSE
+  dev_url: https://github.com/noshita/ktch
+  doc_url: https://doc.ktch.dev/
 
 extra:
   recipe-maintainers:
