@@ -1,5 +1,6 @@
 {% set name = "ktch" %}
-{% set version = "0.4.2" %}
+{% set version = "0.4.3" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -7,25 +8,24 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
-  sha256: 4b8479e7d5963508b29e8df98a4a0ed2c08ab8d9501f03eeed6ba5f13c097940
+  sha256: d60b7d7118f670d4957e2f6bacf5f73792f95853e788c3397d87ad1cf8ae4fa5
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   host:
     - python {{ python_min }}
-    - poetry-core >=1.0.0
+    - hatchling
     - pip
   run:
-    - python >={{ python_min }},<3.12
-    - numpy >=1.22.0,<2.0.0
-    - pandas[pyarrow] >=1.5.0,<3.0.0
-    - scikit-learn >=1.2.0,<2.0.0
-    - scipy >=1.8.0,<2.0.0
-    - toml >=0.10.0,<0.11.0
+    - python >={{ python_min }}
+    - numpy >=1.26
+    - pandas >=2.2
+    - scikit-learn >=1.6
+    - scipy >=1.13
 
 test:
   imports:
@@ -33,14 +33,16 @@ test:
   commands:
     - pip check
   requires:
-    - pip
     - python {{ python_min }}
+    - pip
 
 about:
-  home: https://doc.ktch.dev
+  home: https://doc.ktch.dev/
   summary: ktch is a python package for model-based morphometrics.
   license: Apache-2.0
   license_file: LICENSE
+  dev_url: https://github.com/noshita/ktch
+  doc_url: https://doc.ktch.dev/
 
 extra:
   recipe-maintainers:
