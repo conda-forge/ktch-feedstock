@@ -6,21 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
   sha256: 4b8479e7d5963508b29e8df98a4a0ed2c08ab8d9501f03eeed6ba5f13c097940
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.9,<3.12
+    - python {{ python_min }}
     - poetry-core >=1.0.0
     - pip
   run:
-    - python >=3.9,<3.12
+    - python >={{ python_min }},<3.12
     - numpy >=1.22.0,<2.0.0
     - pandas[pyarrow] >=1.5.0,<3.0.0
     - scikit-learn >=1.2.0,<2.0.0
@@ -34,6 +34,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://doc.ktch.dev
