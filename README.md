@@ -3,11 +3,15 @@ About ktch-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ktch-feedstock/blob/main/LICENSE.txt)
 
-
+Home: https://doc.ktch.dev/
 
 Package license: Apache-2.0
 
 Summary: ktch is a python package for model-based morphometrics.
+
+Development: https://github.com/noshita/ktch
+
+Documentation: https://doc.ktch.dev/
 
 Current build status
 ====================
