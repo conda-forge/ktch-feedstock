@@ -55,12 +55,20 @@ outputs:
         - ktch.plot
         - matplotlib
 
-  - name: {{ name}}-all
+  - name: {{ name }}-all
     build:
       noarch: python
     requirements:
       run:
         - {{ pin_subpackage(name + '-plot', exact=True) }}
+    test:
+      imports:
+        - {{ name }}
+        - matplotlib
+      commands:
+        - pip check
+      requires:
+        - pip
 
 
 about:
