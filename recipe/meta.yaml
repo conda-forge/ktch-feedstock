@@ -1,5 +1,5 @@
 {% set name = "ktch" %}
-{% set version = "0.6.0" %}
+{% set version = "0.5.0" %}
 {% set python_min = "3.11" %}
 
 package:
@@ -12,29 +12,54 @@ source:
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
-requirements:
-  host:
-    - python {{ python_min }}
-    - hatchling
-    - pip
-  run:
-    - python >={{ python_min }}
-    - numpy >=1.26
-    - pandas >=2.2
-    - scikit-learn >=1.6
-    - scipy >=1.13
+outputs:
+  - name: {{ name }}
+    build:
+      noarch: python
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - python {{ python_min }}
+        - hatchling
+        - pip
+      run:
+        - python >={{ python_min }}
+        - numpy >=1.26
+        - pandas >=2.2
+        - scikit-learn >=1.6
+        - scipy >=1.13
+    test:
+      imports:
+        - ktch
+      commands:
+        - pip check
+      requires:
+        - python {{ python_min }}
+        - pip
 
-test:
-  imports:
-    - ktch
-  commands:
-    - pip check
-  requires:
-    - python {{ python_min }}
-    - pip
+  - name: {{ name }}-plot
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage(name, exact=True) }}
+        - matplotlib >=3.10.7
+        - plotly <6.0
+        - seaborn >=0.13.2
+    test:
+      imports:
+        - ktch.plot
+        - matplotlib
+
+  - name: {{ name}}-all
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage(name + '-plot', exact=True) }}
+
 
 about:
   home: https://doc.ktch.dev/
