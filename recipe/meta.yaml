@@ -1,6 +1,8 @@
 {% set name = "ktch" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
 {% set python_min = "3.11" %}
+
+{% set PYTHON = PYTHON | default("$PYTHON") %}
 
 package:
   name: {{ name|lower }}
@@ -8,33 +10,66 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
-  sha256: 7aba99ca065e1102ca51595585d5a4521a81f3190e4b5df7e61336b5351017fe
+  sha256: 617ad2aa03d734d4515b12435fd70bdde7f433be98f440fa4a5543fd61921f08
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
-requirements:
-  host:
-    - python {{ python_min }}
-    - hatchling
-    - pip
-  run:
-    - python >={{ python_min }}
-    - numpy >=1.26
-    - pandas >=2.2
-    - scikit-learn >=1.6
-    - scipy >=1.13
+outputs:
+  - name: {{ name }}
+    build:
+      noarch: python
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - python {{ python_min }}
+        - hatchling
+        - pip
+      run:
+        - python >={{ python_min }}
+        - numpy >=1.26
+        - pandas >=2.2
+        - scikit-learn >=1.6
+        - scipy >=1.13
+    test:
+      imports:
+        - ktch
+      commands:
+        - pip check
+      requires:
+        - python {{ python_min }}
+        - pip
 
-test:
-  imports:
-    - ktch
-  commands:
-    - pip check
-  requires:
-    - python {{ python_min }}
-    - pip
+  - name: {{ name }}-plot
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage(name, exact=True) }}
+        - matplotlib-base >=3.10.7
+        - plotly <6.0
+        - seaborn >=0.13.2
+    test:
+      imports:
+        - ktch.plot
+        - matplotlib
+
+  - name: {{ name }}-all
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage(name + '-plot', exact=True) }}
+    test:
+      imports:
+        - {{ name }}
+        - matplotlib
+      commands:
+        - pip check
+      requires:
+        - pip
+
 
 about:
   home: https://doc.ktch.dev/
