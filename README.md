@@ -32,6 +32,8 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ktch-green.svg)](https://anaconda.org/conda-forge/ktch) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ktch.svg)](https://anaconda.org/conda-forge/ktch) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ktch.svg)](https://anaconda.org/conda-forge/ktch) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ktch.svg)](https://anaconda.org/conda-forge/ktch) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ktch--all-green.svg)](https://anaconda.org/conda-forge/ktch-all) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ktch-all.svg)](https://anaconda.org/conda-forge/ktch-all) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ktch-all.svg)](https://anaconda.org/conda-forge/ktch-all) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ktch-all.svg)](https://anaconda.org/conda-forge/ktch-all) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ktch--plot-green.svg)](https://anaconda.org/conda-forge/ktch-plot) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ktch-plot.svg)](https://anaconda.org/conda-forge/ktch-plot) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ktch-plot.svg)](https://anaconda.org/conda-forge/ktch-plot) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ktch-plot.svg)](https://anaconda.org/conda-forge/ktch-plot) |
 
 Installing ktch
 ===============
@@ -43,16 +45,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ktch` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `ktch, ktch-all, ktch-plot` can be installed with `conda`:
 
 ```
-conda install ktch
+conda install ktch ktch-all ktch-plot
 ```
 
 or with `mamba`:
 
 ```
-mamba install ktch
+mamba install ktch ktch-all ktch-plot
 ```
 
 It is possible to list all of the versions of `ktch` available on your platform with `conda`:
