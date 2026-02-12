@@ -1,5 +1,5 @@
 {% set name = "ktch" %}
-{% set version = "0.6.1" %}
+{% set version = "0.7.0" %}
 {% set python_min = "3.11" %}
 
 {% set PYTHON = PYTHON | default("$PYTHON") %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
-  sha256: 01e5a36919e65fb14e4872bcf280a9b05b5a829d16e0085159f77b9f1ad2ac28
+  sha256: 6e7ca0d0f3d383b34389ec73ac1985216ca93042b424bd4c76545386abd85561
 
 build:
   noarch: python
