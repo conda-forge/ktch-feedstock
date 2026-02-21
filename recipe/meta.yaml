@@ -1,5 +1,5 @@
 {% set name = "ktch" %}
-{% set version = "0.7.1" %}
+{% set version = "0.7.2" %}
 {% set python_min = "3.11" %}
 
 {% set PYTHON = PYTHON | default("$PYTHON") %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
-  sha256: 060211c2277b82ac01bffb3e58ff88b04c037847f2991e3e06f39c0d37bcfe20
+  sha256: 917fcfc6dc477e39ecb42b8014c70d9e92fc2738237ba13cf17ba9c022ba8c69
 
 build:
   noarch: python
@@ -31,7 +31,7 @@ outputs:
         - numpy >=1.26
         - pandas >=2.2
         - scikit-learn >=1.6
-        - scipy >=1.13
+        - scipy >=1.15
     test:
       imports:
         - ktch
@@ -41,25 +41,51 @@ outputs:
         - python {{ python_min }}
         - pip
 
+  - name: {{ name }}-data
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python {{ python_min }}
+      run:
+        - python {{ python_min }}
+        - {{ pin_subpackage(name, exact=True) }}
+        - pooch >=1.3
+        - pillow >=9.0
+    test:
+      imports:
+        - ktch.datasets
+      requires:
+        - python {{ python_min }}
+
   - name: {{ name }}-plot
     build:
       noarch: python
     requirements:
+      host:
+        - python {{ python_min }}
       run:
+        - python {{ python_min }}
         - {{ pin_subpackage(name, exact=True) }}
         - matplotlib-base >=3.10.7
-        - plotly <6.0
+        - plotly >=6.0
         - seaborn >=0.13.2
     test:
       imports:
         - ktch.plot
         - matplotlib
+      requires:
+        - python {{ python_min }}
 
   - name: {{ name }}-all
     build:
       noarch: python
     requirements:
+      host:
+        - python {{ python_min }}
       run:
+        - python {{ python_min }}
+        - {{ pin_subpackage(name + '-data', exact=True) }}
         - {{ pin_subpackage(name + '-plot', exact=True) }}
     test:
       imports:
@@ -68,6 +94,7 @@ outputs:
       commands:
         - pip check
       requires:
+        - python {{ python_min }}
         - pip
 
 
