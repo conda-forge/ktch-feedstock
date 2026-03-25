@@ -28,9 +28,10 @@ outputs:
         - pip
       run:
         - python >={{ python_min }}
-        - numpy >=1.26
-        - pandas >=2.2
-        - scikit-learn >=1.6
+        - numpy >=2.0
+        - pandas >=3.0
+        - pyarrow
+        - scikit-learn >=1.5
         - scipy >=1.15
     test:
       imports:
@@ -67,7 +68,7 @@ outputs:
       run:
         - python >={{ python_min }}
         - {{ pin_subpackage(name, exact=True) }}
-        - matplotlib-base >=3.10.7
+        - matplotlib-base >=3.10
         - plotly >=6.0
         - seaborn >=0.13.2
     test:
