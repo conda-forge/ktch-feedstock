@@ -1,5 +1,5 @@
 {% set name = "ktch" %}
-{% set version = "0.8.1" %}
+{% set version = "0.9.0" %}
 {% set python_min = "3.11" %}
 
 {% set PYTHON = PYTHON | default("$PYTHON") %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ktch-{{ version }}.tar.gz
-  sha256: 4389d0abb44f8f09fbf98a18fc559c8b39d20dfafde4dfe2b171064905ae3e8a
+  sha256: b334e453124180ef7be6bd6b4a14a1a0375b42bd15bcef2ad5f3fda5fc684fac
 
 build:
   noarch: python
@@ -28,9 +28,10 @@ outputs:
         - pip
       run:
         - python >={{ python_min }}
-        - numpy >=1.26
-        - pandas >=2.2
-        - scikit-learn >=1.6
+        - numpy >=2.0
+        - pandas >=3.0
+        - pyarrow
+        - scikit-learn >=1.5
         - scipy >=1.15
     test:
       imports:
@@ -67,7 +68,7 @@ outputs:
       run:
         - python >={{ python_min }}
         - {{ pin_subpackage(name, exact=True) }}
-        - matplotlib-base >=3.10.7
+        - matplotlib-base >=3.10
         - plotly >=6.0
         - seaborn >=0.13.2
     test:
