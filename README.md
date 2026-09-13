@@ -3,7 +3,7 @@ About ktch-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ktch-feedstock/blob/main/LICENSE.txt)
 
-Home: https://doc.ktch.dev/
+Home: https://doc.ktch.dev/stable/
 
 Package license: Apache-2.0
 
@@ -11,7 +11,7 @@ Summary: ktch is a python package for model-based morphometrics.
 
 Development: https://github.com/noshita/ktch
 
-Documentation: https://doc.ktch.dev/
+Documentation: https://doc.ktch.dev/stable/
 
 Current build status
 ====================
@@ -47,31 +47,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ktch, ktch-all, ktch-data, ktch-plot` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install ktch ktch-all ktch-data ktch-plot
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install ktch ktch-all ktch-data ktch-plot
 ```
 
-It is possible to list all of the versions of `ktch` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add ktch ktch-all ktch-data ktch-plot
+# for installing globally
+pixi global install ktch ktch-all ktch-data ktch-plot
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `ktch` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search ktch --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search ktch --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search ktch --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -83,6 +125,8 @@ mamba repoquery whoneeds ktch --channel conda-forge
 # List dependencies of `ktch`:
 mamba repoquery depends ktch --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
